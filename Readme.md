@@ -65,6 +65,6 @@ There are no other restrictions.
 * [Rest in peace, John Conway.](https://xkcd.com/2293/)
 
 
-Tip: Read the [General Information Document](General%20Information.md) for more info on how to get started and submit.
+Tip: Read the [Guidebook](https://mintbean.io/guidebook) for more info on how to get started and submit.
 
 [conways-game-engine]: https://www.npmjs.com/package/@monarchwadia/conways-game-engine
