@@ -1,70 +1,56 @@
-# Today's Objective: Conway's Game of Life (EASY THIS TIME!)
+# Today's Objective: Script Runner Chrome Extension
 
 ## Objective
 
-Last time, Game of Life proved a bit tough for everybody (!!).
+Today's objective is to create your own Script Runner for Chrome.
 
-I've spent quite a bit of time publishing a new NPM module that will let you build the game of life very easily.
+Script runners are tools that let you create, save, edit, and execute pieces of code. Chrome extensions are a particularly useful platform when it comes to creating JavaScript script runners for specific websites.
 
-Today's objective : Create a version of the Game of Life using [the game engine][conways-game-engine] I've published on `npm`.
+Some very well-known ones include:
+* [ViolentMonkey for Chrome](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag?hl=en)
+* [TamperMonkey for Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
+* [AceScript for Chrome](https://chrome.google.com/webstore/detail/ace-script/mjbepbhonbojpoaenhckjocchgfiaofo?hl=en)
 
-### Bonus points
+## Requirements
 
-Bonus points will be awarded for:
-* Creating a writable board
-* Speed controls
-* Zoom controls
+* `IMPORTANT` For security purposes, I will NOT be installing anyone's extensions on my local machine. To get Aesthetic points for your extension, please upload a 1 to 2 minute demo of the extension.
 
-### Rules for the Game of Life
+So, this is your task:
 
-First, watch [the first 2 minutes of this video](https://www.youtube.com/watch?v=FWSR_7kZuYg) to understand how cool this game really is!
+1. Please install some of the above extensions and take them for a spin, building your own scripts and seeing how they work.
+2. Create a Chrome extension that replicates the functionality above. Namely, build an extension that will let you create, save, edit, and execute snippets of JS code. 
 
-## Formal rules
+That's it!
 
-(From [Wikipedia](https://simple.wikipedia.org/wiki/Conway%27s_Game_of_Life))
+But of course, only the most interesting, useful, and cool designs will have a chance of winning -- and they must be written well, too. So, get creative :-)
 
-The game is played on a grid of squares called cells, each cell is black (alive) or white (dead). When people are playing the game, they start by making some dead cells alive. Then the alive cells can make other cells alive or dead because of the rules of the game. The rules are:
 
-Any alive cell that is touching less than two alive neighbours dies.
-Any alive cell touching four or more alive neighbours dies.
-Any alive cell touching two or three alive neighbours does nothing.
-Any dead cell touching exactly three alive neighbours becomes alive.
+### How to build a Chrome extension
 
-The way a player sets up the first alive cells starts the game. The first level (generation) is made by using the 4 rules. After the player is done changing the cells, they do the same thing all over again to make the next level. The game is over when all the cells are dead or all the cells are alive or the game is doing the same thing over and over. The Game of Life is Turing-complete.
+A Chrome extension is basically a `.zip` file. This project will contain a simple HTML page and some JS files zipped into a Chrome extension.
+
+Given time constraints, you should definitely NOT build a backend component for this project.
+
+You can read the following resource to get familiar with how to create a chrome extension:
+* [Chrome Extension documentation](https://developer.chrome.com/extensions)
 
 ### Frameworks:
 
-You must use [the game engine][conways-game-engine] I've published on `npm`. (star it if you like it!)
+Using a framework is not necessary. Plain vanilla JS will do just fine.
 
-Other than, you can use any framework. It is completely possible to build this using jQuery. You can use React, Vue, Angular if you wish.
+However, if you're building something complex, it is recommended that you use a framework such as React, Vue or Angular.
 
-### Restrictions
+## Restrictions
 
 * Your project must use JavaScript.
-* Your project must be frontend-only.
+* Your project must NOT have a backend component. (It really isn't needed)
+* `IMPORTANT` For security purposes, I will NOT be installing anyone's extensions on my local machine. To get Aesthetic points for your extension, please upload a 1 to 2 minute demo of the extension.
 
 There are no other restrictions.
 
-### Tips for success:
+## Tips for success:
 
 1. The project is intentionally simple so you can focus on code quality.
 1. The requirements are intentionally minimalistic so you can get as creative as you'd like.
 1. You get a LOT of time for code review comments. So you can win even if you feel your project isn't great, simply on the strength of your code review comments!
 1. Keep in mind, 33% of your score is based on aesthetic appeal! So try to make it look nice.
-
-## Resources
-
-* [Cornell's assignment page](http://pi.math.cornell.edu/~lipa/mec/lesson6.html)
-* [Bitstorm's implementation](https://bitstorm.org/gameoflife/)
-* [Golly, a very advanced implementation](http://golly.sourceforge.net/webapp/golly.html)
-
-# About John Conway
-
-[John Conway](https://en.wikipedia.org/wiki/John_Horton_Conway) (1937-2020) was an English mathematician. He passed away earlier this month at the age of 82. He had many accomplishments. Among those accomplishments, the [Game of Life](https://simple.wikipedia.org/wiki/Conway%27s_Game_of_Life) is the most popularly famous. 
-
-* [Rest in peace, John Conway.](https://xkcd.com/2293/)
-
-
-Tip: Read the [General Information Document](General%20Information.md) for more info on how to get started and submit.
-
-[conways-game-engine]: https://www.npmjs.com/package/@monarchwadia/conways-game-engine

@@ -12,17 +12,6 @@ Short-format hackathons are 4-hour "bursts". These are designed to encourage dai
 * Mondays and Wednesdays (excluding Ontario statutory holidays).
 * Often followed by a Hireside Chat (but not always)
 
-## Timetable
-
-| Start | End  | Description |
-|-------|------|-------------|
-| 12:00pm EST  | 12:30pm EST | Orientation for newcomers and people who need a refresh. Conducted via Discord. **_(Mandatory for newcomers. Regulars can get a head start on the project!)_** |
-| 12:30pm EST  | 3:00pm EST | Part 1 - Programming. Solo, heads-down. |
-| 3:00pm EST  | 3:30pm EST | Code Review and scoring - how-to instructions. **_(Mandatory for newcomers. Regulars can get a head start on code reviews!)_** |
-| 3:30pm EST  | 4:00pm EST | Part 2 - Code Review and scoring |
-| 4:00pm EST  | 4:30pm EST | Hireside Chats with a Guest Speaker **_(Depending on speaker availability)_** |
-
-
 ## Your responsibilities as a participant in a short-form Hackathon
 
 1. You must be logged onto Discord at all times during the Hackathon.
