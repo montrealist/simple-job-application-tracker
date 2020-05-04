@@ -1,4 +1,4 @@
-# 2020-04-29 - Script Runner Chrome Extension
+# 2020-05-04 - Script Runner Chrome Extension
 
 ## Want to earn open source contributions?
 
@@ -23,6 +23,5 @@ Star [our Github repo](https://github.com/Mintbean/MintbeanPlatform) and read wh
 | 12:30pm EST  | 3:00pm EST | Part 1 - Programming. Solo, heads-down. |
 | 3:00pm EST  | 3:30pm EST | Code Review and scoring - how-to instructions. **_(Mandatory for newcomers. Regulars can get a head start on code reviews!)_** |
 | 3:30pm EST  | 4:00pm EST | Part 2 - Code Review and scoring |
-| 4:00pm EST  | 4:30pm EST | Hireside Chats with a Guest Speaker **_(Depending on speaker availability)_** |
 
 # Good luck!
