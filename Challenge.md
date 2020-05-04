@@ -1,52 +1,81 @@
-# Today's Objective: Script Runner Chrome Extension
+## Today's Objective: Interactive Calculator
 
-## Objective
+Interactive calculators are a beautiful way to inform, entertain, and educate people. Some of them are very beautiful, featuring graphs, charts, and animations. Many of them are simple, practical, and pragmatic. They find uses in marketing, engineering, finance, medicine -- pretty much every field. At some point in their careers, most developers have been involved in a calculator project or two.
 
-Today's objective is to create your own Script Runner for Chrome.
+Here are some examples of interesting interactive calculators. Notice that they all vary in feature sets, functionality, objective, and scope. Some of them focus on beauty and aesthetics, while others focus on practicality and simplicity.
 
-Script runners are tools that let you create, save, edit, and execute pieces of code. Chrome extensions are a particularly useful platform when it comes to creating JavaScript script runners for specific websites.
+* https://goodcalculators.com/meat-cooking-time-calculator/
+* https://www.bills.com/debt/tools/ways-to-save
+* https://paulhoughton.github.io/mortgage/
+* http://www.diablo3gemcalculator.com/
+* https://calculator.numerologist.com/
 
-Some very well-known ones include:
-* [ViolentMonkey for Chrome](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag?hl=en)
-* [TamperMonkey for Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
-* [AceScript for Chrome](https://chrome.google.com/webstore/detail/ace-script/mjbepbhonbojpoaenhckjocchgfiaofo?hl=en)
+Today's objective is to create a simple interactive calculator of your own design.
 
 ## Requirements
 
-* `IMPORTANT` For security purposes, I will NOT be installing anyone's extensions on my local machine. To get Aesthetic points for your extension, please upload a 1 to 2 minute demo of the extension.
+Create an interactive calculator! 
 
-So, this is your task:
+The design can be of your own choosing, and so this project is very open-ended. Here are some suggestions:
 
-1. Please install some of the above extensions and take them for a spin, building your own scripts and seeing how they work.
-2. Create a Chrome extension that replicates the functionality above. Namely, build an extension that will let you create, save, edit, and execute snippets of JS code. 
+`Tip: Make sure you choose an EASY problem! You only have 2h15m to finish while also writing clean code.`
 
-That's it!
+## Suggestions for what to build
 
-But of course, only the most interesting, useful, and cool designs will have a chance of winning -- and they must be written well, too. So, get creative :-)
+Are you stumped about what you should build? Pick one of the following and get started.
 
+### Suggested project: Tip calculator
 
-### How to build a Chrome extension
+Take a restaurant bill and calculate how much tip you have to add on top of it. Easy peasy!
 
-A Chrome extension is basically a `.zip` file. This project will contain a simple HTML page and some JS files zipped into a Chrome extension.
+Inputs: bill amount, tip percentage
+Outputs: tip amount, grand total
 
-Given time constraints, you should definitely NOT build a backend component for this project.
+### Suggested project: Bill split calculator
 
-You can read the following resource to get familiar with how to create a chrome extension:
-* [Chrome Extension documentation](https://developer.chrome.com/extensions)
+Take a restaurant bill and split it between a number of parties. 
 
-### Frameworks:
+Inputs: bill amount, number of parties.
+Outputs: amount of money each party has to pay
 
-Using a framework is not necessary. Plain vanilla JS will do just fine.
+To make it more fun, you can maybe create some kind of way to assign greater or lower ratios of the bill to different parties.
 
-However, if you're building something complex, it is recommended that you use a framework such as React, Vue or Angular.
+### Suggested project: Compound growth calculator
+
+Create a growth chart that tells you how fast a number will grow over time, given a growth rate.
+
+Input: initial number, growth rate
+Output: a chart or table that shows you how much the number has grown over time.
+
+### Or, do your own thing!
+
+You can create something cooler if you wish. Please don't copy/paste old projects, though -- write from scratch, even if you're inspired by the old project :-)
 
 ## Restrictions
 
-* Your project must use JavaScript.
-* Your project must NOT have a backend component. (It really isn't needed)
-* `IMPORTANT` For security purposes, I will NOT be installing anyone's extensions on my local machine. To get Aesthetic points for your extension, please upload a 1 to 2 minute demo of the extension.
+You must be able to deploy your project online.
+Your project must use JavaScript.
 
 There are no other restrictions.
+
+## Technology suggestions
+
+* Vanilla JS
+* Templated HTML
+* React
+* Vue
+* Angular
+* Pure Express API - see StackOverflow link in "Library Suggestions" below
+
+## Library suggestions
+
+Avoid D3.js unless you're already experienced at it. D3 is very powerful for custom graphs, but has an extremely steep learning curve, making it unsuitable for this project.
+
+Good libraries to use:
+* Google Charts - https://developers.google.com/chart
+* Plotly - https://plotly.com/javascript/plotly-fundamentals/
+* ChartJS - https://www.chartjs.org/
+* If you're using strictly backend, see https://stackoverflow.com/questions/44543729/how-to-render-a-graph-as-image-in-node. We have not tested any of these suggestions, but [Vega](https://www.npmjs.com/package/vega) looks great so far.
 
 ## Tips for success:
 
