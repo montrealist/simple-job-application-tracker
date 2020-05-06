@@ -42,17 +42,15 @@ function App() {
     return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">List</Link>
-            </li>
-            <li>
-              <Link to="/add">Add Item</Link>
-            </li>
-          </ul>
+        <div>
+        <header className="bg-black-90 fixed w-100 ph3 pv3 pv4-ns ph4-m ph5-l">
+        <nav className="f6 fw6 ttu tracked">
+            <Link className="link dim white dib mr3" to="/">List</Link>
+            <Link className="link dim white dib mr3" to="/add">Add Item</Link>
         </nav>
-
+        </header>
+        </div>
+        <section className="pv6-ns">
         <Switch>
           <Route path="/add">
             <AddItem onAdd={onAddItem} />
@@ -61,6 +59,8 @@ function App() {
             <ItemList onDelete={onDeleteItem} items={state.applications} />
           </Route>
         </Switch>
+        </section>
+
       </div>
     </Router>
 

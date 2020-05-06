@@ -6,7 +6,7 @@ export default function ItemList(props) {
         props.onDelete(e.target.dataset.id);
       };
     return (
-        <ul className="f3 list pl0 mt0 measure-wide center">
+        <ul className="f3 list pl0 mt0 measure-wide-ns center">
             {
                 props.items.map(item =>
                     <li key={item.id} id={'item-' + item.id} className="flex items-center lh-copy pa3 ph0-l bb b--black-10">
