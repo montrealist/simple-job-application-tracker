@@ -1,51 +1,61 @@
-## Today's Objective: Interactive Calculator
+## Today's Objective: Job Application Tracker
 
-Interactive calculators are a beautiful way to inform, entertain, and educate people. Some of them are very beautiful, featuring graphs, charts, and animations. Many of them are simple, practical, and pragmatic. They find uses in marketing, engineering, finance, medicine -- pretty much every field. At some point in their careers, most developers have been involved in a calculator project or two.
+Everyone here has been through the process of applying for jobs. We all know that it can be a rigorous process. Expert career coaches recommend applying to anywhere between 20 and 200 jobs per week. The average junior developer can expect to apply for jobs for about 6 months before they find their first software development job. That's a total of roughly 500 to 5000 job applications over the course of your job search!
 
-Here are some examples of interesting interactive calculators. Notice that they all vary in feature sets, functionality, objective, and scope. Some of them focus on beauty and aesthetics, while others focus on practicality and simplicity.
-
-* https://goodcalculators.com/meat-cooking-time-calculator/
-* https://www.bills.com/debt/tools/ways-to-save
-* https://paulhoughton.github.io/mortgage/
-* http://www.diablo3gemcalculator.com/
-* https://calculator.numerologist.com/
-
-Today's objective is to create a simple interactive calculator of your own design.
+Tracking job applications is very much a personal process that differs from person to person. In this exercise, we will all create job application trackers that are personal to our own job hunt styles. 
 
 ## Requirements
 
-Create an interactive calculator! 
+Create a job application tracker that is personal to you, with some kind of long-term persistence (either a database or using localstorage, or (better) IndexedDB).
 
-The design can be of your own choosing, and so this project is very open-ended. Here are some suggestions:
+The design can be of your own choosing, and so this project is very open-ended. Here is how you should be thinking about the design process:
 
-`Tip: Make sure you choose an EASY problem! You only have 2h15m to finish while also writing clean code.`
+### SAMPLE Data Model Design
 
-## Suggestions for what to build
+(this is only a sample of what could be built in 4 hours)
 
-Are you stumped about what you should build? Pick one of the following and get started.
+The data model is the seed that what will determine the look, feel, and functionality of your application.
 
-### Suggested project: Tip calculator
+Here is a sample data model that I would use if I were to create this application:
 
-Take a restaurant bill and calculate how much tip you have to add on top of it. Easy peasy!
+```javascript
+    // Options include Applied, PhoneInterviewScheduled, PhoneInterviewComplete, InPersonInterviewScheduled, 
+    // InPersonInterviewComplete, OfferReceived, and Rejected
+    type: "PhoneInterviewComplete",
+    company: "Acme Inc.",
+    jobDescriptionUrl: "Junior Software Developer",
+    notes: "This is a really cool job. The interviewer seemed like a really chill person. I hope they get back to me.",
+    createdAt: Date,
+    updatedAt: Date
+}
+```
 
-Inputs: bill amount, tip percentage
-Outputs: tip amount, grand total
+### SAMPLE plan for UX layout
 
-### Suggested project: Bill split calculator
+(this is only a sample of what could be built in 4 hours)
 
-Take a restaurant bill and split it between a number of parties. 
+For the above data model, I would create the following views:
 
-Inputs: bill amount, number of parties.
-Outputs: amount of money each party has to pay
+Stuff I consider 'required' for my application:
+1. "List" of job applications, with sort+filter
+1. "Show" view for an individual application
+1. "Create" view for an application
+1. "Update" view for an application
 
-To make it more fun, you can maybe create some kind of way to assign greater or lower ratios of the bill to different parties.
+Nice to haves (in order of attempt):
+1. (if I have time to build this) Dashboard view with some charts 
+1. (if I have time to build this) On the list view, allow statuses to be updated using dropdowns
+1. (if I have time to build this) Add an iFrame so Google automatically shows up with search results for the "company" field
+1. (if I have time to build this) Add graphs that show me my # of applications over time
+1. (if I have time to build this) Add a "step counter" line on the header that tells me 
 
-### Suggested project: Compound growth calculator
+### SAMPLE persistence plan
 
-Create a growth chart that tells you how fast a number will grow over time, given a growth rate.
+You should build some kind of persistence. This can be a simple localstorage system, or it can be a more elaborate IndexedDB-based system (probably through a library like Dexie). Maybe Firebase.
 
-Input: initial number, growth rate
-Output: a chart or table that shows you how much the number has grown over time.
+If you are feeling adventurous, you can even build a full stack application.
+
+I'm going to use localStorage to persist my data.
 
 ### Or, do your own thing!
 
@@ -60,22 +70,24 @@ There are no other restrictions.
 
 ## Technology suggestions
 
-* Vanilla JS
-* Templated HTML
+You should use whatever you are most comfortable with.
+
+### Look/feel
+* Skeleton CSS
+* Bulma CSS
+* Bootstrap
+
+### Functionality
 * React
 * Vue
 * Angular
-* Pure Express API - see StackOverflow link in "Library Suggestions" below
+* Server-rendered HTML (EJS, Pug, Handlebars, Mustache, etc.)
 
-## Library suggestions
-
-Avoid D3.js unless you're already experienced at it. D3 is very powerful for custom graphs, but has an extremely steep learning curve, making it unsuitable for this project.
-
-Good libraries to use:
-* Google Charts - https://developers.google.com/chart
-* Plotly - https://plotly.com/javascript/plotly-fundamentals/
-* ChartJS - https://www.chartjs.org/
-* If you're using strictly backend, see https://stackoverflow.com/questions/44543729/how-to-render-a-graph-as-image-in-node. We have not tested any of these suggestions, but [Vega](https://www.npmjs.com/package/vega) looks great so far.
+### Persistence
+* LocalStorage
+* IndexedDB (with a library like Dexie)
+* Firebase
+* SQLite / MongoDB / Postgres
 
 ## Tips for success:
 
