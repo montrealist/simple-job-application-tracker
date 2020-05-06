@@ -10,13 +10,15 @@ import db from './db';
 import AddItem from './AddItem';
 import ItemList from './ItemList';
 
+const tableName = 'applications';
+
 const initState = {
     applications: []
 };
 function App() {
     const [state, setState] = useState(initState);
     useEffect(() => {
-        db.table('applications')
+        db.table(tableName)
             .toArray()
             .then((applications) => {
                 console.log('got applications from db: ', applications);
@@ -24,10 +26,18 @@ function App() {
             });
     }, []);
 
-    console.log('state', state);
     const onAddItem = (item) => {
         console.log('onAddItem ran', item);
     }
+    const onDeleteItem = (id) => {
+        const idToDelete = parseInt(id, 10);
+        db.table(tableName)
+        .delete(idToDelete)
+        .then(() => {
+          const newList = state.applications.filter((item) => item.id !== idToDelete);
+          setState({ applications: newList });
+        });
+    };
 
     return (
     <Router>
@@ -48,7 +58,7 @@ function App() {
             <AddItem onAdd={onAddItem} />
           </Route>
           <Route path="/">
-            <ItemList items={state.applications} />
+            <ItemList onDelete={onDeleteItem} items={state.applications} />
           </Route>
         </Switch>
       </div>
