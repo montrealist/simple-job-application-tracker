@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Database Seed</title>
+    <style>
+        textarea
+        {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+    <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
+    <script>
+        //
+        // PREPARATION
+        //
+
+        // To make the sample more visible - replace window.console with one that shows the content on page
+        function Console() {
+            this.textarea = document.createElement('textarea');
+            this.log = function (txt, type) {
+                if (type) this.textarea.value += type + " ";
+                this.textarea.value += txt + "\n";
+            }
+            this.error = function (txt) {
+                this.log(txt, "ERROR!");
+            }
+        }
+        window.console = new Console();
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('consoleArea').appendChild(console.textarea);
+        });
+
+    </script>
+    <script>
+        var application =
+        {
+            type: "PhoneInterviewComplete",
+            company: "Foobar Inc.",
+            jobDescriptionUrl: "Star Blazing Software Developer",
+            notes: "This is a really cool job. The interviewer seemed like a really chill person. I know they will get back to me!",
+            createdAt: new Date(),
+            updatedAt: new Date()
+        };
+
+        var db = new Dexie('ApplicationsDB');
+        db.version(1).stores({ applications: '++id' });
+        db.table('applications')
+        .add(application)
+        .then((id) => {
+            console.log('added application: ' + id);
+        });
+    </script>
+</head>
+<body>
+    <div id="consoleArea"></div>
+</body>
+</html>
