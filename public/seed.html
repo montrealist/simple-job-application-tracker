@@ -33,7 +33,8 @@
 
     </script>
     <script>
-        var application =
+        var applications =
+        [
         {
             type: "PhoneInterviewComplete",
             company: "Foobar Inc.",
@@ -41,12 +42,29 @@
             notes: "This is a really cool job. The interviewer seemed like a really chill person. I know they will get back to me!",
             createdAt: new Date(),
             updatedAt: new Date()
-        };
+        },
+        {
+            type: "Applied",
+            company: "Some Other Cool Company Inc.",
+            jobDescriptionUrl: "Front End Engineer",
+            notes: "Sent the resume on May 1st, waiting to hear back from them.",
+            createdAt: new Date(),
+            updatedAt: new Date()
+        },
+        {
+            type: "PhoneInterviewScheduled",
+            company: "Element AI",
+            jobDescriptionUrl: "Unicorn Developer",
+            notes: "Phone interview scheduled for May 11th. Need to brush up on Vue JS and MVVM basics.",
+            createdAt: new Date(),
+            updatedAt: new Date()
+        }
+    ];
 
         var db = new Dexie('ApplicationsDB');
         db.version(1).stores({ applications: '++id' });
         db.table('applications')
-        .add(application)
+        .bulkAdd(applications)
         .then((id) => {
             console.log('added application: ' + id);
         });
