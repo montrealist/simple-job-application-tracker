@@ -16,7 +16,7 @@ export default function ItemList(props) {
                             <span className="f5 db black-70">{item.notes}</span>
                         </div>
                         <div>
-                            <a className="f6" href="#" data-id={item.id} onClick={handleClick}>delete</a>
+                            <a className="f6" href="/deleteItem" data-id={item.id} onClick={handleClick}>delete</a>
                         </div>
                     </li>
                 )
