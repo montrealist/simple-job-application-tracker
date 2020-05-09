@@ -1,10 +1,14 @@
 import React from 'react';
-
+import {
+    Link
+  } from "react-router-dom";
+  
 export default function ItemList(props) {
-    const handleClick = (e) => {
+    const handleDelete = (e) => {
         e.preventDefault();
         props.onDelete(e.target.dataset.id);
-      };
+    };
+
     return (
         <ul className="f3 list pl0 mt0 measure-wide-ns center">
             {
@@ -16,7 +20,8 @@ export default function ItemList(props) {
                             <span className="f5 db black-70">{item.notes}</span>
                         </div>
                         <div>
-                            <a className="f6" href="/deleteItem" data-id={item.id} onClick={handleClick}>delete</a>
+                            <Link className="f6" to={"/edit/" + item.id}>edit</Link>&nbsp;
+                            <a className="f6" href="/deleteItem" data-id={item.id} onClick={handleDelete}>delete</a>
                         </div>
                     </li>
                 )

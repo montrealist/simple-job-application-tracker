@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import StatusMessage from './StatusMessage';
 
 export default function AddItem(props) {
+    console.log('props', props);
     const [company, setCompany] = useState('' || props.company);
     const [position, setPosition] = useState('' || props.position);
     const [notes, setNotes] = useState('' || props.notes);
