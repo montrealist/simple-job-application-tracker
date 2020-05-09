@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import StatusMessage from './StatusMessage';
 
 export default function AddItem(props) {
-    console.log('props', props);
-    const [company, setCompany] = useState('' || props.company);
-    const [position, setPosition] = useState('' || props.position);
-    const [notes, setNotes] = useState('' || props.notes);
+    // console.log('props', props);
+    const [company, setCompany] = useState(props.company || '');
+    const [position, setPosition] = useState(props.position || '');
+    const [notes, setNotes] = useState(props.notes || '');
     const [message, setMessage] = useState({
         msg: '',
         error: false
@@ -46,7 +46,7 @@ export default function AddItem(props) {
 
     return (<div className="f3 list pl0 mt0 measure-wide-ns center">
         <form className="pa4 black-80">
-            <div className="measure">
+        <div className="measure">
                 <label htmlFor="company" className="f6 b db mb2">Company</label>
                 <input id="company" value={company} onChange={e => {
                     validate(e.target.value);
