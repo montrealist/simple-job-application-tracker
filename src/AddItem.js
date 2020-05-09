@@ -12,9 +12,9 @@ export default function AddItem(props) {
             setError('Company and position are mandatory fields');
             return;
         }
-
-        console.log('submit');
         props.onSave({ company, position, notes });
+        // TODO: add success message + "show list" link
+        reset();
     };
 
     const validate = (event) => {

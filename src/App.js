@@ -27,7 +27,13 @@ function App() {
     }, []);
 
     const onAddItem = (item) => {
-        console.log('onAddItem ran', item);
+      db.table(tableName)
+      .add(item)
+      .then((id) => {
+        const newList = [...state.applications, Object.assign({}, item, { id })];
+        setState({ applications: newList });
+      });
+      console.log('onAddItem ran', item);
     }
     const onDeleteItem = (id) => {
         const idToDelete = parseInt(id, 10);
@@ -53,7 +59,7 @@ function App() {
         <section className="pv6-ns">
         <Switch>
           <Route path="/add">
-            <AddItem onAdd={onAddItem} />
+            <AddItem onSave={onAddItem} />
           </Route>
           <Route path="/">
             <ItemList onDelete={onDeleteItem} items={state.applications} />
