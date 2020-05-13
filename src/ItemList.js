@@ -16,7 +16,7 @@ export default function ItemList(props) {
                     <li key={item.id} id={'item-' + item.id} className="flex items-center lh-copy pa3 ph0-l bb b--black-10">
                         <div className="pl3 flex-auto">
                             <span className="f5 db black-70">{item.company}</span>
-                            <span className="f4 db black-70">{item.jobDescriptionUrl}</span>
+                            <span className="f4 db black-70">{item.position}</span>
                             <span className="f5 db black-70">{item.notes}</span>
                         </div>
                         <div>
