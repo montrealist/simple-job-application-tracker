@@ -82,8 +82,8 @@ export default function AddItem(props) {
                 <StatusMessage {...message} />
             </div>
             <div className="measure tr">
-                <a onClick={onSubmit} className="f4 link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib dark-green" href="/submit">Submit</a>
-                <a onClick={onClear} className="f4 link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib mid-gray" href="/clear">Clear</a>
+                <button onClick={onSubmit} className="f4 link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib dark-green" href="/submit">Submit</button>
+                <button onClick={onClear} className="f4 link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib mid-gray" href="/clear">Clear</button>
             </div>
 
         </form>
