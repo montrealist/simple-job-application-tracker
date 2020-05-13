@@ -1,3 +1,7 @@
+button:hover {
+  cursor:pointer;
+}
+
 button.black {
   border-color: #000;
 }

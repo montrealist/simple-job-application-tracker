@@ -20,8 +20,8 @@ export default function ItemList(props) {
                             <span className="f5 db black-70">{item.notes}</span>
                         </div>
                         <div className="flex flex-column">
-                            <Link className="w4 f6 tc link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib navy" to={"/edit/" + item.id}>edit</Link>
-                            <button className="w4 f6 link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib dark-pink" data-id={item.id} onClick={handleDelete}>delete</button>
+                            <Link className="w4 f5 tc link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib navy" to={"/edit/" + item.id}>edit</Link>
+                            <button className="w4 f5 link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib dark-pink" data-id={item.id} onClick={handleDelete}>delete</button>
                         </div>
                     </li>
                 )
