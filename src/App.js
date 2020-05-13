@@ -6,6 +6,8 @@ import {
   Link
 } from "react-router-dom";
 
+import "./App.css";
+
 import db from './db';
 import AddItem from './AddItem';
 import ItemList from './ItemList';
