@@ -1,0 +1,51 @@
+button:hover {
+  cursor:pointer;
+}
+
+button.black {
+  border-color: #000;
+}
+
+button.near-black {
+  border-color: #111;
+}
+
+button.dark-gray {
+  border-color: #333;
+}
+
+button.mid-gray {
+  border-color: #555;
+}
+
+button.white {
+  border-color: #fff;
+}
+
+button.purple {
+  border-color: #5e2ca5;
+}
+
+button.light-purple {
+  border-color: #a463f2;
+}
+
+button.dark-pink {
+  border-color: #d5008f;
+}
+
+button.hot-pink {
+  border-color: #ff41b4;
+}
+
+button.dark-green {
+  border-color: #137752;
+}
+
+button.navy {
+  border-color: #001b44;
+}
+
+button.dark-blue {
+  border-color: #00449e;
+}
