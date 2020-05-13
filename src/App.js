@@ -33,6 +33,23 @@ function App() {
         setState({ applications: newList });
       });
   }
+
+  const onEditItem = (id, item) => {
+    const idToUpdate = parseInt(id, 10);
+    db.table(tableName)
+      .update(idToUpdate, item).then((updated) => {
+        if (updated) {
+          console.info(`update of record ${id} was ok`);
+          const newList = state.applications.map((app) => {
+            return app.id === id ? Object.assign(item, { id }) : app;
+          });
+          setState({ applications: newList });
+        } else {
+          console.error(`DB not updated - no record with ID ${id}`);
+        }
+      });
+  }
+
   const onDeleteItem = (id) => {
     const idToDelete = parseInt(id, 10);
     db.table(tableName)
@@ -46,23 +63,23 @@ function App() {
   function EditItem(props) {
     const { applications, match } = props;
 
-    if(!applications.length) {
-        return (<div className="f3 list pl0 mt0 measure-wide-ns center">Loading...</div>);
+    if (!applications.length) {
+      return (<div className="f3 list pl0 mt0 measure-wide-ns center">Loading...</div>);
     }
 
     const id = match.params.id;
     const item = props.applications.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
     return (
-      <AddItem {...item} onSave={onAddItem} />
+      <AddItem {...item} onEdit={onEditItem} onSave={onAddItem} />
     );
   }
 
   function AddEdit() {
     return (
-        <Switch>
-          <Route exact path='/edit' render={(props) => <AddItem {...props} onSave={onAddItem} />}/>
-          <Route path='/edit/:id' render={(props) => <EditItem {...props} applications={state.applications} />} />
-        </Switch>
+      <Switch>
+        <Route exact path='/edit' render={(props) => <AddItem {...props} onSave={onAddItem} />} />
+        <Route path='/edit/:id' render={(props) => <EditItem {...props} applications={state.applications} />} />
+      </Switch>
     );
   }
 
@@ -82,7 +99,7 @@ function App() {
             <Route path="/add">
               <AddItem onSave={onAddItem} />
             </Route>
-            <Route path='/edit' component={AddEdit}/>
+            <Route path='/edit' component={AddEdit} />
             <Route path="/">
               <ItemList onDelete={onDeleteItem} items={state.applications} />
             </Route>

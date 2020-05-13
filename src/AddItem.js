@@ -11,6 +11,11 @@ export default function AddItem(props) {
         error: false
     });
 
+    const MODE_EDIT = 'EDIT';
+    const MODE_SAVE = 'SAVE';
+
+    const mode = (props.id) ? MODE_EDIT : MODE_SAVE;
+
     const setError = (msg) => {
         setMessage({
             msg,
@@ -24,8 +29,14 @@ export default function AddItem(props) {
             setError('Company and position are mandatory fields');
             return;
         }
-        props.onSave({ company, position, notes });
-        // TODO: add success message + "show list" link
+
+        if(mode === MODE_EDIT) {
+            props.onEdit(props.id, { company, position, notes });
+        } else {
+            props.onSave({ company, position, notes });
+        }
+
+        // TODO: add success message + "view list" link
         reset();
     };
 
