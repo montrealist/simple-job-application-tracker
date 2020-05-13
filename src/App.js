@@ -9,7 +9,7 @@ import {
 import "./App.css";
 
 import db from './db';
-import AddItem from './AddItem';
+import AddEditItem from './AddEditItem';
 import ItemList from './ItemList';
 
 const tableName = 'applications';
@@ -72,14 +72,14 @@ function App() {
     const id = match.params.id;
     const item = props.applications.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
     return (
-      <AddItem {...item} onEdit={onEditItem} onSave={onAddItem} />
+      <AddEditItem {...item} onEdit={onEditItem} onSave={onAddItem} />
     );
   }
 
   function AddEdit() {
     return (
       <Switch>
-        <Route exact path='/edit' render={(props) => <AddItem {...props} onSave={onAddItem} />} />
+        <Route exact path='/edit' render={(props) => <AddEditItem {...props} onSave={onAddItem} />} />
         <Route path='/edit/:id' render={(props) => <EditItem {...props} applications={state.applications} />} />
       </Switch>
     );
@@ -99,7 +99,7 @@ function App() {
         <section className="pv6-ns">
           <Switch>
             <Route path="/add">
-              <AddItem onSave={onAddItem} />
+              <AddEditItem onSave={onAddItem} />
             </Route>
             <Route path='/edit' component={AddEdit} />
             <Route path="/">
