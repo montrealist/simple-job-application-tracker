@@ -11,6 +11,7 @@ import "./App.css";
 import db from './db';
 import AddEditItem from './AddEditItem';
 import ItemList from './ItemList';
+import ItemNotFound from './ItemNotFound';
 
 const tableName = 'applications';
 
@@ -71,9 +72,15 @@ function App() {
 
     const id = match.params.id;
     const item = props.applications.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
-    return (
-      <AddEditItem {...item} onEdit={onEditItem} onSave={onAddItem} />
-    );
+    if (item) {
+      return (
+        <AddEditItem {...item} onEdit={onEditItem} onSave={onAddItem} />
+      );
+    } else {
+      return (
+        <ItemNotFound id={id} />
+      );
+    }
   }
 
   function AddEdit() {
