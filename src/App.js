@@ -97,9 +97,12 @@ function App() {
       <div>
         <div>
           <header className="bg-black-90 fixed w-100 ph3 pv3 pv4-ns ph4-m ph5-l">
-            <nav className="f6 fw6 ttu tracked">
+            <nav className="f6 fw6 ttu tracked db dt-l w-100 border-box">
               <Link className="link dim white dib mr3" to="/">List</Link>
               <Link className="link dim white dib mr3" to="/add">Add Item</Link>
+              <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+                <Link className="link tr-l dim white dib mr3" to="/seed">Seed some list entries</Link>
+              </div>
             </nav>
           </header>
         </div>
@@ -109,6 +112,10 @@ function App() {
               <AddEditItem onSave={onAddItem} />
             </Route>
             <Route path='/edit' component={AddEdit} />
+            <Route path='/seed' component={() => { 
+                window.location.href = '/seed.html'; 
+                return null;
+            }}/>
             <Route path="/">
               <ItemList onDelete={onDeleteItem} items={state.applications} />
             </Route>
