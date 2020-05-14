@@ -100,8 +100,8 @@ function App() {
             <nav className="f6 fw6 ttu tracked db dt-l w-100 border-box">
               <Link className="link dim white dib mr3" to="/">List</Link>
               <Link className="link dim white dib mr3" to="/add">Add Item</Link>
-              <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
-                <Link className="link tr-l dim white dib mr3" to="/seed">Seed some list entries</Link>
+              <div className="db dtc-l v-mid w-100 w-75-l tc tr-l">
+                <Link className={"link tr-l dim dib mr3 " + (state.applications.length ? 'mid-gray' : 'white')} to="/seed">Seed some list entries</Link>
               </div>
             </nav>
           </header>
