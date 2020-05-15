@@ -1,5 +1,7 @@
 # simple job application tracker
 
+Deployed here: https://simple-job-applications-tracker.now.sh/
+
 ## features
 
 - add/edit/delete items
