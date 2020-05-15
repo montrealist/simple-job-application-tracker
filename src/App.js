@@ -11,6 +11,7 @@ import "./App.css";
 import db from './db';
 import AddEditItem from './AddEditItem';
 import ItemList from './ItemList';
+import ItemNotFound from './ItemNotFound';
 
 const tableName = 'applications';
 
@@ -71,9 +72,15 @@ function App() {
 
     const id = match.params.id;
     const item = props.applications.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
-    return (
-      <AddEditItem {...item} onEdit={onEditItem} onSave={onAddItem} />
-    );
+    if (item) {
+      return (
+        <AddEditItem {...item} onEdit={onEditItem} onSave={onAddItem} />
+      );
+    } else {
+      return (
+        <ItemNotFound id={id} />
+      );
+    }
   }
 
   function AddEdit() {
@@ -90,9 +97,12 @@ function App() {
       <div>
         <div>
           <header className="bg-black-90 fixed w-100 ph3 pv3 pv4-ns ph4-m ph5-l">
-            <nav className="f6 fw6 ttu tracked">
+            <nav className="f6 fw6 ttu tracked db dt-l w-100 border-box">
               <Link className="link dim white dib mr3" to="/">List</Link>
               <Link className="link dim white dib mr3" to="/add">Add Item</Link>
+              <div className="db dtc-l v-mid w-100 w-75-l tc tr-l">
+                <Link className={"link tr-l dim dib mr3 " + (state.applications.length ? 'mid-gray' : 'white')} to="/seed">Seed some list entries</Link>
+              </div>
             </nav>
           </header>
         </div>
@@ -102,8 +112,17 @@ function App() {
               <AddEditItem onSave={onAddItem} />
             </Route>
             <Route path='/edit' component={AddEdit} />
+            <Route path='/seed' component={() => { 
+                window.location.href = '/seed.html'; 
+                return null;
+            }}/>
             <Route path="/">
-              <ItemList onDelete={onDeleteItem} items={state.applications} />
+              {state.applications.length !== 0 && 
+                <ItemList onDelete={onDeleteItem} items={state.applications} />
+              }
+              {state.applications.length === 0 && 
+                <p className="f4 list pl0 mt0 measure-wide-ns center">No items. <Link to="/seed">Seed some list entries</Link> or <Link to="/add">add an item</Link> manually.</p>
+              }
             </Route>
           </Switch>
         </section>
