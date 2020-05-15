@@ -10,9 +10,12 @@
             padding: 20px;
             margin: 0 auto;
         }
-        .sample-code-frame p span {
+        .sample-code-frame p span:not(.status) {
             display: block;
             margin-bottom: .5em;
+        }
+        .status {
+            font-weight: bold;
         }
     </style>
     <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
@@ -22,10 +25,10 @@
             this.textarea = document.createElement('p');
             
             this.log = function (txt, type) {
-                this.textarea.innerHTML += '<span>' + txt + '</span>';
+                this.textarea.innerHTML += '<span><span class="status">' + (type ? type : 'INFO') + '</span>:&nbsp;' + txt + '</span>';
             }
             this.error = function (txt) {
-                this.log(txt, "ERROR!");
+                this.log(txt, 'ERROR');
             }
         }
         window.console = new Console();
