@@ -117,7 +117,12 @@ function App() {
                 return null;
             }}/>
             <Route path="/">
-              <ItemList onDelete={onDeleteItem} items={state.applications} />
+              {state.applications.length !== 0 && 
+                <ItemList onDelete={onDeleteItem} items={state.applications} />
+              }
+              {state.applications.length === 0 && 
+                <p className="f4 list pl0 mt0 measure-wide-ns center">No items. <Link to="/seed">Seed some list entries</Link> or <Link to="/add">add an item</Link> manually.</p>
+              }
             </Route>
           </Switch>
         </section>
