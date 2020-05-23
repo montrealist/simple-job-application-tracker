@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import "../index.css";
 import "../App.css";
 
-import StatusMessage from '../StatusMessage';
+import StatusMessage from '../components/StatusMessage';
 
 storiesOf("StatusMessage", module)
     .add("Nothing passed in", () => <StatusMessage></StatusMessage>)

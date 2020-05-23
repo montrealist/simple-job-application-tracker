@@ -6,7 +6,7 @@ import { action } from "@storybook/addon-actions";
 import "../index.css";
 import "../App.css";
 
-import ItemList from '../ItemList';
+import ItemList from '../components/ItemList';
 
 const dummyEntries = [
   {

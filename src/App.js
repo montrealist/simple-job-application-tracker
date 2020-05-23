@@ -9,10 +9,10 @@ import {
 import "./App.css";
 
 import db from './db';
-import AddEditItem from './AddEditItem';
-import ItemList from './ItemList';
-import ItemNotFound from './ItemNotFound';
-import Header from './Header';
+import AddEditItem from './components/AddEditItem';
+import ItemList from './components/ItemList';
+import ItemNotFound from './components/ItemNotFound';
+import Header from './components/Header';
 
 const tableName = 'applications';
 

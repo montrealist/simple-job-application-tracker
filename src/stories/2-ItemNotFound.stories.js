@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 import "../index.css";
 import "../App.css";
 
-import ItemNotFound from '../ItemNotFound';
+import ItemNotFound from '../components/ItemNotFound';
 
 // const dummyEntries = [
 //   {

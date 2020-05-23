@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import "../index.css";
 import "../App.css";
 
-import Header from '../Header';
+import Header from '../components/Header';
 
 const dummyEntries = [
     {
