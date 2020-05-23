@@ -6,6 +6,7 @@ import "../index.css";
 import "../App.css";
 
 import Header from '../Header';
+
 const dummyEntries = [
     {
         id: 1,
@@ -18,5 +19,5 @@ const dummyEntries = [
 
 storiesOf("Header", module)
     .addDecorator(getStory => <MemoryRouter>{getStory()}</MemoryRouter>)
-    .add("Default", () => <Header></Header>)
+    .add("Default header", () => <Header></Header>)
     .add("With entries", () => <Header entries={dummyEntries}></Header>);
