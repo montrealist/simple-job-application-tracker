@@ -79,7 +79,7 @@ function App() {
       );
     } else {
       return (
-        <ItemNotFound id={id} />
+        <ItemNotFound id={id} link={"/edit"} />
       );
     }
   }
