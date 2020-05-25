@@ -12,7 +12,7 @@ export default function ItemList({ items = [], onDelete }) {
     };
 
     return (
-        <ul className="f3 list pl0 mt0 measure-wide-ns center">
+        <ul className="pl0">
             {
                 items.length ? items.map(item =>
                     <li key={item.id} id={'item-' + item.id} className="flex items-center lh-title pa3 ph0-l bb b--black-10">

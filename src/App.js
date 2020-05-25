@@ -13,12 +13,15 @@ import AddEditItem from './components/AddEditItem';
 import ItemList from './components/ItemList';
 import ItemNotFound from './components/ItemNotFound';
 import Header from './components/Header';
+import Pagination from './components/Pagination';
 
 const tableName = 'applications';
 
 function App() {
  
   const [applications, setApplications] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [entriesPerPage] = useState(4);
  
   useEffect(() => {
     db.table(tableName)
@@ -27,6 +30,12 @@ function App() {
         setApplications(applications);
       });
   }, []);
+
+  const indexOfLastItem = currentPage * entriesPerPage;
+  const indexOfFirstItem = indexOfLastItem - entriesPerPage;
+  const currentItems = applications.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNum) => setCurrentPage(pageNum);
 
   const onAddItem = (item) => {
     db.table(tableName)
@@ -118,7 +127,10 @@ function App() {
             }} />
             <Route path="/">
               {applications.length !== 0 &&
-                <ItemList onDelete={onDelete} items={applications} />
+              <div className="f3 list pl0 mt0 measure-wide-ns center">
+                <ItemList onDelete={onDelete} items={currentItems} />
+                <Pagination entriesPerPage={entriesPerPage} totalEntries={applications.length} paginate={paginate} />
+              </div>
               }
               {applications.length === 0 &&
                 <p className="f4 list pl0 mt0 measure-wide-ns center">No items. <Link to="/seed">Seed some list entries</Link> or <Link to="/add">add an item</Link> manually.</p>
