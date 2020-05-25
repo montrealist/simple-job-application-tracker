@@ -35,10 +35,10 @@ export default function AddItem(props) {
             return;
         }
 
-        if(mode === MODE_EDIT) {
-            props.onEdit(props.id, { company, position, notes });
+        if (mode === MODE_EDIT) {
+            props.onEdit({ company, position, notes }, props.id);
         } else {
-            props.onSave({ company, position, notes });
+            props.onEdit({ company, position, notes });
         }
 
         // TODO: add success message + "view list" link
@@ -50,14 +50,16 @@ export default function AddItem(props) {
             setError('');
         }
     }
+
     const reset = () => {
         setCompany('');
         setPosition('');
         setNotes('');
     }
+
     const onClear = (e) => {
         e.preventDefault();
-        if(mode === MODE_EDIT) {
+        if (mode === MODE_EDIT) {
             setCompany(currentFieldValues.current.company);
             setPosition(currentFieldValues.current.position);
             setNotes(currentFieldValues.current.notes);
@@ -69,7 +71,7 @@ export default function AddItem(props) {
 
     return (<div className="f3 list pl0 mt0 measure-wide-ns center">
         <form className="pa4 black-80">
-        <div className="measure">
+            <div className="measure">
                 <label htmlFor="company" className="f6 b db mb2">Company</label>
                 <input id="company" value={company} onChange={e => {
                     validate(e.target.value);
@@ -95,7 +97,7 @@ export default function AddItem(props) {
             </div>
             <div className="measure tr">
                 <button onClick={onSubmit} className="f4 link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib dark-green" href="/submit">Submit</button>
-            <button onClick={onClear} className="f4 link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib mid-gray" href="/clear">{mode === MODE_EDIT ? "Cancel" : "Clear"}</button>
+                <button onClick={onClear} className="f4 link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib mid-gray" href="/clear">{mode === MODE_EDIT ? "Cancel" : "Clear"}</button>
             </div>
 
         </form>

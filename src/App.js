@@ -13,28 +13,36 @@ import AddEditItem from './components/AddEditItem';
 import ItemList from './components/ItemList';
 import ItemNotFound from './components/ItemNotFound';
 import Header from './components/Header';
+import Pagination from './components/Pagination';
 
 const tableName = 'applications';
 
-const initState = {
-  applications: []
-};
 function App() {
-  const [state, setState] = useState(initState);
+ 
+  const [applications, setApplications] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [entriesPerPage] = useState(4);
+ 
   useEffect(() => {
     db.table(tableName)
       .toArray()
       .then((applications) => {
-        setState({ applications });
+        setApplications(applications);
       });
   }, []);
+
+  const indexOfLastItem = currentPage * entriesPerPage;
+  const indexOfFirstItem = indexOfLastItem - entriesPerPage;
+  const currentItems = applications.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNum) => setCurrentPage(pageNum);
 
   const onAddItem = (item) => {
     db.table(tableName)
       .add(item)
       .then((id) => {
-        const newList = [...state.applications, Object.assign({}, item, { id })];
-        setState({ applications: newList });
+        const newList = [...applications, Object.assign({}, item, { id })];
+        setApplications(newList);
       });
   }
 
@@ -44,23 +52,31 @@ function App() {
       .update(idToUpdate, item).then((updated) => {
         if (updated) {
           console.info(`update of record ${id} was ok`);
-          const newList = state.applications.map((app) => {
+          const newList = applications.map((app) => {
             return app.id === id ? Object.assign(item, { id }) : app;
           });
-          setState({ applications: newList });
+          setApplications(newList);
         } else {
           console.error(`DB not updated - no record with ID ${id}`);
         }
       });
   }
 
-  const onDeleteItem = (id) => {
+  const onEdit = (item, id) => {
+    if (id) {
+      onEditItem(id, item);
+    } else {
+      onAddItem(item);
+    }
+  }
+
+  const onDelete = (id) => {
     const idToDelete = parseInt(id, 10);
     db.table(tableName)
       .delete(idToDelete)
       .then(() => {
-        const newList = state.applications.filter((item) => item.id !== idToDelete);
-        setState({ applications: newList });
+        const newList = applications.filter((item) => item.id !== idToDelete);
+        setApplications(newList);
       });
   };
 
@@ -75,7 +91,7 @@ function App() {
     const item = props.applications.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
     if (item) {
       return (
-        <AddEditItem {...item} onEdit={onEditItem} onSave={onAddItem} />
+        <AddEditItem {...item} onEdit={onEdit} />
       );
     } else {
       return (
@@ -87,8 +103,8 @@ function App() {
   function AddEdit() {
     return (
       <Switch>
-        <Route exact path='/edit' render={(props) => <AddEditItem {...props} onSave={onAddItem} />} />
-        <Route path='/edit/:id' render={(props) => <EditItem {...props} applications={state.applications} />} />
+        <Route exact path='/edit' render={(props) => <AddEditItem {...props} onEdit={onEdit} />} />
+        <Route path='/edit/:id' render={(props) => <EditItem {...props} applications={applications} />} />
       </Switch>
     );
   }
@@ -97,23 +113,26 @@ function App() {
     <Router>
       <div>
         <div>
-          <Header entries={state.applications} />
+          <Header entries={applications} />
         </div>
         <section className="pv6-ns">
           <Switch>
             <Route path="/add">
-              <AddEditItem onSave={onAddItem} />
+              <AddEditItem onEdit={onEdit} />
             </Route>
             <Route path='/edit' component={AddEdit} />
-            <Route path='/seed' component={() => { 
-                window.location.href = '/seed.html'; 
-                return null;
-            }}/>
+            <Route path='/seed' component={() => {
+              window.location.href = '/seed.html';
+              return null;
+            }} />
             <Route path="/">
-              {state.applications.length !== 0 && 
-                <ItemList onDelete={onDeleteItem} items={state.applications} />
+              {applications.length !== 0 &&
+              <div className="f3 list pl0 mt0 measure-wide-ns center">
+                <ItemList onDelete={onDelete} items={currentItems} />
+                <Pagination entriesPerPage={entriesPerPage} totalEntries={applications.length} paginate={paginate} />
+              </div>
               }
-              {state.applications.length === 0 && 
+              {applications.length === 0 &&
                 <p className="f4 list pl0 mt0 measure-wide-ns center">No items. <Link to="/seed">Seed some list entries</Link> or <Link to="/add">add an item</Link> manually.</p>
               }
             </Route>

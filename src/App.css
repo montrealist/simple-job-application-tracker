@@ -1,3 +1,7 @@
+ul.pagination:before {
+  content: 'Page: ';
+}
+
 button:hover {
   cursor:pointer;
 }
