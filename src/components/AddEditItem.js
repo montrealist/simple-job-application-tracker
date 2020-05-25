@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import StatusMessage from './StatusMessage';
+import { useHistory } from "react-router-dom";
 
 export default function AddItem(props) {
-    // console.log('props', props);
+    const history = useHistory();
+
     const [company, setCompany] = useState(props.company || '');
     const [position, setPosition] = useState(props.position || '');
     const [notes, setNotes] = useState(props.notes || '');
+
     const [message, setMessage] = useState({
         msg: '',
         error: false
@@ -15,6 +18,8 @@ export default function AddItem(props) {
     const MODE_SAVE = 'SAVE';
 
     const mode = (props.id) ? MODE_EDIT : MODE_SAVE;
+
+    const currentFieldValues = useRef({ company, position, notes });
 
     const setError = (msg) => {
         setMessage({
@@ -52,7 +57,14 @@ export default function AddItem(props) {
     }
     const onClear = (e) => {
         e.preventDefault();
-        reset();
+        if(mode === MODE_EDIT) {
+            setCompany(currentFieldValues.current.company);
+            setPosition(currentFieldValues.current.position);
+            setNotes(currentFieldValues.current.notes);
+            history.goBack();
+        } else {
+            reset();
+        }
     };
 
     return (<div className="f3 list pl0 mt0 measure-wide-ns center">
@@ -83,7 +95,7 @@ export default function AddItem(props) {
             </div>
             <div className="measure tr">
                 <button onClick={onSubmit} className="f4 link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib dark-green" href="/submit">Submit</button>
-                <button onClick={onClear} className="f4 link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib mid-gray" href="/clear">Clear</button>
+            <button onClick={onClear} className="f4 link dim br3 ba bw1 ph3 pv2 ml2 mb2 dib mid-gray" href="/clear">{mode === MODE_EDIT ? "Cancel" : "Clear"}</button>
             </div>
 
         </form>
