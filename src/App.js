@@ -54,6 +54,14 @@ function App() {
       });
   }
 
+  const onEdit = (item, id) => {
+    if (id) {
+      onEditItem(id, item);
+    } else {
+      onAddItem(item);
+    }
+  }
+
   const onDeleteItem = (id) => {
     const idToDelete = parseInt(id, 10);
     db.table(tableName)
@@ -75,7 +83,7 @@ function App() {
     const item = props.applications.find((item) => parseInt(item.id, 10) === parseInt(id, 10));
     if (item) {
       return (
-        <AddEditItem {...item} onEdit={onEditItem} onSave={onAddItem} />
+        <AddEditItem {...item} onEdit={onEdit} />
       );
     } else {
       return (
@@ -87,7 +95,7 @@ function App() {
   function AddEdit() {
     return (
       <Switch>
-        <Route exact path='/edit' render={(props) => <AddEditItem {...props} onSave={onAddItem} />} />
+        <Route exact path='/edit' render={(props) => <AddEditItem {...props} onEdit={onEdit} />} />
         <Route path='/edit/:id' render={(props) => <EditItem {...props} applications={state.applications} />} />
       </Switch>
     );
@@ -102,18 +110,18 @@ function App() {
         <section className="pv6-ns">
           <Switch>
             <Route path="/add">
-              <AddEditItem onSave={onAddItem} />
+              <AddEditItem onEdit={onEdit} />
             </Route>
             <Route path='/edit' component={AddEdit} />
-            <Route path='/seed' component={() => { 
-                window.location.href = '/seed.html'; 
-                return null;
-            }}/>
+            <Route path='/seed' component={() => {
+              window.location.href = '/seed.html';
+              return null;
+            }} />
             <Route path="/">
-              {state.applications.length !== 0 && 
+              {state.applications.length !== 0 &&
                 <ItemList onDelete={onDeleteItem} items={state.applications} />
               }
-              {state.applications.length === 0 && 
+              {state.applications.length === 0 &&
                 <p className="f4 list pl0 mt0 measure-wide-ns center">No items. <Link to="/seed">Seed some list entries</Link> or <Link to="/add">add an item</Link> manually.</p>
               }
             </Route>
