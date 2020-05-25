@@ -16,19 +16,15 @@ import Header from './components/Header';
 
 const tableName = 'applications';
 
-const initState = {
-  applications: []
-};
-
 function App() {
  
-  const [state, setState] = useState(initState);
+  const [applications, setApplications] = useState([]);
  
   useEffect(() => {
     db.table(tableName)
       .toArray()
       .then((applications) => {
-        setState({ applications });
+        setApplications(applications);
       });
   }, []);
 
@@ -36,8 +32,8 @@ function App() {
     db.table(tableName)
       .add(item)
       .then((id) => {
-        const newList = [...state.applications, Object.assign({}, item, { id })];
-        setState({ applications: newList });
+        const newList = [...applications, Object.assign({}, item, { id })];
+        setApplications(newList);
       });
   }
 
@@ -47,10 +43,10 @@ function App() {
       .update(idToUpdate, item).then((updated) => {
         if (updated) {
           console.info(`update of record ${id} was ok`);
-          const newList = state.applications.map((app) => {
+          const newList = applications.map((app) => {
             return app.id === id ? Object.assign(item, { id }) : app;
           });
-          setState({ applications: newList });
+          setApplications(newList);
         } else {
           console.error(`DB not updated - no record with ID ${id}`);
         }
@@ -70,8 +66,8 @@ function App() {
     db.table(tableName)
       .delete(idToDelete)
       .then(() => {
-        const newList = state.applications.filter((item) => item.id !== idToDelete);
-        setState({ applications: newList });
+        const newList = applications.filter((item) => item.id !== idToDelete);
+        setApplications(newList);
       });
   };
 
@@ -99,7 +95,7 @@ function App() {
     return (
       <Switch>
         <Route exact path='/edit' render={(props) => <AddEditItem {...props} onEdit={onEdit} />} />
-        <Route path='/edit/:id' render={(props) => <EditItem {...props} applications={state.applications} />} />
+        <Route path='/edit/:id' render={(props) => <EditItem {...props} applications={applications} />} />
       </Switch>
     );
   }
@@ -108,7 +104,7 @@ function App() {
     <Router>
       <div>
         <div>
-          <Header entries={state.applications} />
+          <Header entries={applications} />
         </div>
         <section className="pv6-ns">
           <Switch>
@@ -121,10 +117,10 @@ function App() {
               return null;
             }} />
             <Route path="/">
-              {state.applications.length !== 0 &&
-                <ItemList onDelete={onDelete} items={state.applications} />
+              {applications.length !== 0 &&
+                <ItemList onDelete={onDelete} items={applications} />
               }
-              {state.applications.length === 0 &&
+              {applications.length === 0 &&
                 <p className="f4 list pl0 mt0 measure-wide-ns center">No items. <Link to="/seed">Seed some list entries</Link> or <Link to="/add">add an item</Link> manually.</p>
               }
             </Route>
